@@ -35,3 +35,35 @@ int main() {
 
     return 0;
 }
+```
+## Create Folders
+
+### File: create_folders.cpp
+
+This program (`create_folders.cpp`) creates folders from A to Z in the Downloads folder of a Windows user. The folders are named "Folder_A" to "Folder_Z".
+
+#### Usage:
+
+1. Replace "YourUsername" with your actual Windows username in the `downloadsFolder` variable.
+2. Compile and run the program.
+
+```cpp
+#include <iostream>
+#include <windows.h>
+
+int main() {
+    std::string downloadsFolder = "C:\\Users\\YourUsername\\Downloads\\";
+
+    for (char letter = 'A'; letter <= 'Z'; ++letter) {
+        std::string folderName = downloadsFolder + "Folder_" + letter;
+
+        if (CreateDirectory(folderName.c_str(), NULL) || ERROR_ALREADY_EXISTS == GetLastError()) {
+            std::cout << "Folder created: " << folderName << std::endl;
+        } else {
+            std::cerr << "Unable to create folder: " << folderName << std::endl;
+        }
+    }
+
+    return 0;
+}
+```
